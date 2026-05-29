@@ -21,6 +21,3 @@ https://food-ease-eta.vercel.app/
 - JSX
 - Tailwind CSS
 - Vercel (deployment)
-
-
-Format the heading githu style
