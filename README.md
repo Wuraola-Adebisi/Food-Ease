@@ -1,16 +1,22 @@
-# React + Vite
+#FoodEase
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FoodEase is a modern recipe discovery web application that helps users browse, search, and explore meals across different categories. It focuses on clean UI, fast navigation, and structured recipe presentation for everyday cooking inspiration.
 
-Currently, two official plugins are available:
+#Live Demo
+https://food-ease-eta.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+##Features
+- Recipe browsing by category (Vegetarian, Chicken, Dessert, Seafood)
+- Featured “Today’s Pick” section for highlighted meals
+- Search functionality for recipes
+- Recipe listing with structured metadata (category, cuisine, tags)
+- Responsive layout for mobile and desktop users
+- Newsletter subscription section
+- Clean landing page with hero-driven UI
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+##Tech Stack
+- React (component-based UI)
+- JavaScript (ES6+)
+- JSX
+- Tailwind CSS
+- Vercel (deployment)
