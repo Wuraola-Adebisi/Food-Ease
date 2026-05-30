@@ -1,6 +1,6 @@
 export default function RecipeCard(props) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white transition-transform duration-500 ease-in-out hover:-translate-y-2">
+    <div className="overflow-hidden rounded-xl border border-gray-100 bg-white transition-transform duration-500 ease-in-out hover:-translate-y-2">
       <img
         src={props.img}
         alt={props.Title}
