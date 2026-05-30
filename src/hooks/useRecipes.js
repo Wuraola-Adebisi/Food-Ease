@@ -38,10 +38,6 @@ export function useRecipes(activeCategory) {
     return () => clearTimeout(timer);
   }, [query]);
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [activeCategory, debouncedQuery]);
-
   const filteredRecipes = useMemo(
     () =>
       recipes.filter((meal) => {
