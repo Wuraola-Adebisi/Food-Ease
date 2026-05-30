@@ -26,6 +26,10 @@ export const ITEMS_PER_PAGE = 12;
 
 export const SEARCH_DEBOUNCE_MS = 400;
 
+export const SKELETON_CARD_COUNT = 6;
+
+export const RECIPE_DESCRIPTION_LIMIT = 100;
+
 export const HERO_VIDEO_URL =
   "https://res.cloudinary.com/dnkfg07ov/video/upload/v1780025498/videoplayback_or0dqy.mp4";
 
