@@ -186,7 +186,7 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
           <div className="flex items-center gap-4">
             <button
               onClick={() => { setSubscribeOpen(true); setSubmitted(false); setEmail(""); }}
-              className="hidden sm:inline-flex rounded-full px-6 py-2.5 text-sm font-semibold text-white transition-all duration-200 active:scale-95 hover:opacity-90"
+              className="hidden sm:inline-flex rounded-lg px-6 py-2.5 text-sm font-semibold text-white transition-all duration-200 active:scale-95 hover:opacity-90"
               style={{ backgroundColor: "var(--color-forest)", fontFamily: "var(--font-sans)" }}
             >
               Subscribe
