@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import RecipeGrid from "./components/RecipeGrid";
@@ -22,6 +23,7 @@ function App() {
         <RecipeGrid activeCategory={activeCategory} onCategorySelect={handleCategorySelect} />
       </main>
       <Footer onCategorySelect={handleCategorySelect} />
+      <Analytics />
     </div>
   );
 }
