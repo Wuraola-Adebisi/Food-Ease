@@ -1,27 +1,32 @@
 import { useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import Navigation from "./components/Navigation";
-import Hero from "./components/Hero";
-import RecipeGrid from "./components/RecipeGrid";
-import Footer from "./components/Footer";
-
-export const CATEGORIES = ["Vegetarian", "Chicken", "Dessert", "Seafood"];
+import Footer from "./components/footer/Footer";
+import Hero from "./components/hero/Hero";
+import Navigation from "./components/navigation/Navigation";
+import RecipeGrid from "./components/recipes/RecipeGrid";
+import { scrollToRecipes } from "./utils/scroll";
 
 function App() {
   const [activeCategory, setActiveCategory] = useState(null);
 
   const handleCategorySelect = (category) => {
     setActiveCategory((prev) => (prev === category ? null : category));
-    document.getElementById("recipes")?.scrollIntoView({ behavior: "smooth" });
+    scrollToRecipes();
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Navigation activeCategory={activeCategory} onCategorySelect={handleCategorySelect} />
+      <Navigation
+        activeCategory={activeCategory}
+        onCategorySelect={handleCategorySelect}
+      />
       <main className="flex-grow">
         <Hero />
-        <RecipeGrid activeCategory={activeCategory} onCategorySelect={handleCategorySelect} />
+        <RecipeGrid
+          activeCategory={activeCategory}
+          onCategorySelect={handleCategorySelect}
+        />
       </main>
       <Footer onCategorySelect={handleCategorySelect} />
       <Analytics />
