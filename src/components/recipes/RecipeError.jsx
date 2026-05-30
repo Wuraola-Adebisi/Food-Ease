@@ -1,4 +1,4 @@
-export default function RecipeError({ message }) {
+export default function RecipeError({ message, onRetry }) {
   return (
     <section
       id="recipes"
@@ -7,7 +7,7 @@ export default function RecipeError({ message }) {
       <p className="font-sans text-base text-red-400">{message}</p>
       <button
         type="button"
-        onClick={() => window.location.reload()}
+        onClick={onRetry}
         className="rounded-full border px-5 py-2 text-sm font-semibold transition-colors"
         style={{
           borderColor: "var(--color-forest)",
