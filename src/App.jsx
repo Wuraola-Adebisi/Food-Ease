@@ -17,10 +17,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Navigation
-        activeCategory={activeCategory}
-        onCategorySelect={handleCategorySelect}
-      />
+      <Navigation />
       <main className="flex-grow">
         <Hero />
         <RecipeGrid
