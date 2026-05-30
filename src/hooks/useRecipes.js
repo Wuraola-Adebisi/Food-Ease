@@ -57,11 +57,12 @@ export function useRecipes(activeCategory) {
     1,
     Math.ceil(filteredRecipes.length / ITEMS_PER_PAGE),
   );
-  const start = (currentPage - 1) * ITEMS_PER_PAGE;
-  const pageRecipes = filteredRecipes.slice(start, start + ITEMS_PER_PAGE);
+const visiblePage = Math.min(currentPage, totalPages);
+const start = (visiblePage - 1) * ITEMS_PER_PAGE;
+const pageRecipes = filteredRecipes.slice(start, start + ITEMS_PER_PAGE);
 
-  return {
-    currentPage,
+return {
+  currentPage: visiblePage,
     debouncedQuery,
     error,
     loading,
