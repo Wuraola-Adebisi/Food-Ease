@@ -10,14 +10,16 @@ import RecipeSectionHeader from "./RecipeSectionHeader";
 
 export default function RecipeGrid({ activeCategory, onCategorySelect }) {
   const {
+    clearQuery,
     currentPage,
     debouncedQuery,
     error,
     loading,
     pageRecipes,
     query,
+    refetchRecipes,
+    resetPage,
     setCurrentPage,
-    setDebouncedQuery,
     setQuery,
     totalPages,
   } = useRecipes(activeCategory);
@@ -26,26 +28,25 @@ export default function RecipeGrid({ activeCategory, onCategorySelect }) {
     setCurrentPage(page);
     scrollToRecipes();
   };
-  
-const handleQueryChange = (nextQuery) => {
-  setQuery(nextQuery);
-  setCurrentPage(1);
-};
-  
- const handleClearAll = () => {
-  setQuery("");
-  setDebouncedQuery("");
-  setCurrentPage(1);
-  if (activeCategory) onCategorySelect(activeCategory);
-};
+
+  const handleQueryChange = (nextQuery) => {
+    setQuery(nextQuery);
+    resetPage();
+  };
+
+  const handleClearAll = () => {
+    clearQuery();
+    resetPage();
+    if (activeCategory) onCategorySelect(activeCategory);
+  };
 
   if (error) {
-    return <RecipeError message={error} />;
+    return <RecipeError message={error} onRetry={refetchRecipes} />;
   }
 
   return (
     <div id="recipes" className="mx-auto max-w-6xl px-6 pt-4 pb-12 mt-12">
-     <RecipeSearch query={query} onQueryChange={handleQueryChange} />
+      <RecipeSearch query={query} onQueryChange={handleQueryChange} />
 
       <RecipeSectionHeader
         activeCategory={activeCategory}
