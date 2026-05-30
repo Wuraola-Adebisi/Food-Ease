@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import RecipeGrid from "./components/RecipeGrid";
@@ -24,6 +25,7 @@ function App() {
       </main>
       <Footer onCategorySelect={handleCategorySelect} />
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
