@@ -44,7 +44,6 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
     return () => document.removeEventListener("keydown", handleKey);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -208,7 +207,7 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
               Subscribe
             </button>
 
-            {/* Hamburger — wired to menuOpen */}
+          
             <button
               onClick={() => setMenuOpen((v) => !v)}
               className="md:hidden flex flex-col justify-center items-end gap-1.5 h-9 w-9 rounded-xl border p-2 active:scale-95 transition-all"
@@ -220,7 +219,7 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
               aria-label="Toggle Menu"
               aria-expanded={menuOpen}
             >
-              {/* Animate bars into X when open */}
+             
               <span
                 className="w-5 h-0.5 rounded block transition-all duration-300 origin-center"
                 style={{
@@ -241,7 +240,7 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
                 style={{
                   backgroundColor: scrolled ? "var(--color-forest)" : "#fff",
                   transform: menuOpen ? "translateY(-4px) rotate(-45deg)" : "none",
-                  // Third bar appears when menu is open to form X
+           
                   opacity: menuOpen ? 1 : 0,
                   marginTop: menuOpen ? 0 : "-6px",
                   position: menuOpen ? "relative" : "absolute",
@@ -252,8 +251,6 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
         </div>
       </nav>
 
-      {/* ── Mobile slide-in drawer ── */}
-      {/* Backdrop */}
       <div
         className="fixed inset-0 z-40 md:hidden"
         style={{
@@ -267,7 +264,7 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
         aria-hidden="true"
       />
 
-      {/* Drawer panel */}
+  
       <div
         className="fixed top-0 right-0 h-full z-50 md:hidden flex flex-col"
         style={{
@@ -279,7 +276,7 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
           overflowY: "auto",
         }}
       >
-        {/* Drawer header */}
+     
         <div
           className="flex items-center justify-between px-6 py-5 border-b"
           style={{ borderColor: "#f0f0ee" }}
@@ -303,8 +300,7 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
             </svg>
           </button>
         </div>
-
-        {/* Nav links */}
+        
         <div className="flex flex-col px-4 pt-4 gap-1" style={{ fontFamily: "var(--font-sans)" }}>
           {["Home", "About Us", "Contact"].map((label) => (
             <a
@@ -320,7 +316,7 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
             </a>
           ))}
 
-          {/* Recipes accordion */}
+          
           <button
             onClick={() => setMobileCatsOpen((v) => !v)}
             className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-colors text-left border-none cursor-pointer"
@@ -341,7 +337,7 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
             </svg>
           </button>
 
-          {/* Category list */}
+        
           <div
             style={{
               maxHeight: mobileCatsOpen ? "500px" : "0px",
@@ -373,7 +369,7 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
           </div>
         </div>
 
-        {/* Subscribe button at bottom of drawer */}
+      
         <div className="mt-auto px-6 pb-8 pt-4 border-t" style={{ borderColor: "#f0f0ee" }}>
           <button
             onClick={() => { setMenuOpen(false); setSubscribeOpen(true); setSubmitted(false); setEmail(""); }}
@@ -385,7 +381,7 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
         </div>
       </div>
 
-      {/* Subscribe modal */}
+  
       {subscribeOpen && (
         <div
           className="fixed inset-0 z-[200] flex items-center justify-center px-4"
