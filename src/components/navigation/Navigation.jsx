@@ -7,28 +7,12 @@ import MenuButton from "./MenuButton";
 import MobileMenu from "./MobileMenu";
 import SubscribeModal from "./SubscribeModal";
 
-export default function Navigation() { activeCategory, onCategorySelect }) {
+export default function Navigation() {
   const { scrolled, opacity } = useScrollHeader();
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [subscribeOpen, setSubscribeOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [mobileCatsOpen, setMobileCatsOpen] = useState(false);
-  const dropdownRef = useRef(null);
-  const hoverTimeout = useRef(null);
 
   useBodyScrollLock(menuOpen);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   useEffect(() => {
     const handleKey = (event) => {
@@ -42,15 +26,6 @@ export default function Navigation() { activeCategory, onCategorySelect }) {
 
     return () => document.removeEventListener("keydown", handleKey);
   }, []);
-
-  const handleMouseEnter = () => {
-    clearTimeout(hoverTimeout.current);
-    setDropdownOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    hoverTimeout.current = setTimeout(() => setDropdownOpen(false), 150);
-  };
 
   const openSubscribeModal = () => {
     setSubscribeOpen(true);
@@ -69,17 +44,7 @@ export default function Navigation() { activeCategory, onCategorySelect }) {
         <div className="mx-auto max-w-6xl px-6 flex items-center justify-between">
           <BrandLogo scrolled={scrolled} />
 
-          <DesktopNav
-            activeCategory={activeCategory}
-            dropdownOpen={dropdownOpen}
-            dropdownRef={dropdownRef}
-            scrolled={scrolled}
-            onCategorySelect={onCategorySelect}
-            onDropdownClose={() => setDropdownOpen(false)}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onToggleDropdown={() => setDropdownOpen((value) => !value)}
-          />
+          <DesktopNav scrolled={scrolled} />
 
           <div className="flex items-center gap-4">
             <button
@@ -104,13 +69,9 @@ export default function Navigation() { activeCategory, onCategorySelect }) {
       </nav>
 
       <MobileMenu
-        activeCategory={activeCategory}
-        mobileCatsOpen={mobileCatsOpen}
         menuOpen={menuOpen}
-        onCategorySelect={onCategorySelect}
         onClose={() => setMenuOpen(false)}
         onOpenSubscribe={openSubscribeModal}
-        onToggleCategories={() => setMobileCatsOpen((value) => !value)}
       />
 
       <SubscribeModal
