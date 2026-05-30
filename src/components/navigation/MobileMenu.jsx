@@ -1,17 +1,9 @@
-import { FiChevronDown, FiX } from "react-icons/fi";
-import { CATEGORIES, NAV_LINKS } from "../../constants";
+import { FiX } from "react-icons/fi";
+import { NAV_LINKS } from "../../constants";
 import BrandLogo from "../shared/BrandLogo";
 import IconButton from "../shared/IconButton";
 
-export default function MobileMenu({
-  activeCategory,
-  mobileCatsOpen,
-  menuOpen,
-  onCategorySelect,
-  onClose,
-  onOpenSubscribe,
-  onToggleCategories,
-}) {
+export default function MobileMenu({ menuOpen, onClose, onOpenSubscribe }) {
   return (
     <>
       <div
@@ -59,90 +51,16 @@ export default function MobileMenu({
               onClick={onClose}
               className="px-4 py-3 rounded-xl text-base font-medium transition-colors"
               style={{ color: "#111" }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#f5f5f3";
+              onMouseEnter={(event) => {
+                event.currentTarget.style.backgroundColor = "#f5f5f3";
               }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "transparent";
+              onMouseLeave={(event) => {
+                event.currentTarget.style.backgroundColor = "transparent";
               }}
             >
               {label}
             </a>
           ))}
-
-          <button
-            type="button"
-            onClick={onToggleCategories}
-            className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-colors text-left border-none cursor-pointer"
-            style={{
-              color: "#111",
-              backgroundColor: "transparent",
-              fontFamily: "var(--font-sans)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#f5f5f3";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "transparent";
-            }}
-          >
-            Recipes
-            <FiChevronDown
-              size={16}
-              style={{
-                transition: "transform 0.2s ease",
-                transform: mobileCatsOpen ? "rotate(180deg)" : "rotate(0deg)",
-                color: "#999",
-              }}
-            />
-          </button>
-
-          <div
-            style={{
-              maxHeight: mobileCatsOpen ? "500px" : "0px",
-              overflow: "hidden",
-              transition: "max-height 0.3s ease",
-            }}
-          >
-            <div className="flex flex-col gap-0.5 pl-4 pb-2">
-              {CATEGORIES.map((category) => {
-                const isActive = activeCategory === category;
-
-                return (
-                  <button
-                    key={category}
-                    type="button"
-                    onClick={() => {
-                      onCategorySelect(category);
-                      onClose();
-                    }}
-                    className="w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium transition-colors border-none cursor-pointer"
-                    style={{
-                      backgroundColor: isActive
-                        ? "var(--color-forest)"
-                        : "transparent",
-                      color: isActive ? "#fff" : "#555",
-                      fontFamily: "var(--font-sans)",
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!isActive) {
-                        e.currentTarget.style.backgroundColor = "#f5f5f3";
-                        e.currentTarget.style.color = "var(--color-forest)";
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isActive) {
-                        e.currentTarget.style.backgroundColor = "transparent";
-                        e.currentTarget.style.color = "#555";
-                      }
-                    }}
-                  >
-                    {category}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
         </div>
 
         <div
