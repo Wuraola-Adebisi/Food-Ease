@@ -65,45 +65,36 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
       >
         <div className="mx-auto max-w-6xl px-6 flex items-center justify-between">
 
-          {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <span
-              className="h-9 w-9 rounded-xl flex items-center justify-center text-white font-bold text-lg transition-transform duration-300 group-hover:rotate-12"
-              style={{ backgroundColor: "var(--color-forest)", fontFamily: "var(--font-serif)" }}
-            >
-              F
-            </span>
             <span
               className="text-xl font-bold tracking-tight"
               style={{
                 fontFamily: "var(--font-serif)",
                 color: scrolled ? "#111" : "#fff",
-                transition: "color 0.3s ease",
+                transition: "color 0.5s ease",
               }}
             >
               Food
               <span style={{
                 color: scrolled ? "var(--color-forest)" : "rgba(255,255,255,0.75)",
-                transition: "color 0.3s ease",
+                transition: "color 0.5s ease",
               }}>
                 Ease
               </span>
             </span>
           </a>
 
-          {/* Nav Links */}
           <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0 text-base font-medium" style={{ fontFamily: "var(--font-sans)" }}>
             <li>
               <a
                 href="#"
                 className="relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
-                style={{ color: scrolled ? "#111" : "#fff", transition: "color 0.3s ease" }}
+                style={{ color: scrolled ? "#111" : "#fff", transition: "color 0.5s ease" }}
               >
                 Home
               </a>
             </li>
 
-            {/* Recipes dropdown */}
             <li
               ref={dropdownRef}
               className="relative"
@@ -192,7 +183,6 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
             ))}
           </ul>
 
-          {/* CTA */}
           <div className="flex items-center gap-4">
             <button
               onClick={() => { setSubscribeOpen(true); setSubmitted(false); setEmail(""); }}
@@ -217,7 +207,7 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
         </div>
       </nav>
 
-      {/* Subscribe Modal */}
+  
       {subscribeOpen && (
         <div
           className="fixed inset-0 z-[200] flex items-center justify-center px-4"
