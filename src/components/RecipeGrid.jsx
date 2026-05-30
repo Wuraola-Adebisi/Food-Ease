@@ -100,6 +100,11 @@ export default function RecipeGrid({ activeCategory, onCategorySelect }) {
     setCurrentPage(1);
   }, [activeCategory, debouncedQuery]);
 
+  const goToPage = (page) => {
+  setCurrentPage(page);
+  document.getElementById("recipes")?.scrollIntoView({ behavior: "smooth" });
+};
+
   const filtered = recipes.filter((meal) => {
     const matchesQuery = meal.strMeal.toLowerCase().includes(debouncedQuery.toLowerCase());
     const matchesCategory = activeCategory ? meal.strCategory === activeCategory : true;
@@ -199,7 +204,7 @@ export default function RecipeGrid({ activeCategory, onCategorySelect }) {
           <button
             className="rounded px-4 py-2 text-base border border-gray-200 disabled:opacity-40 transition-colors duration-200 hover:bg-gray-50"
             style={{ color: "#555" }}
-            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+            onClick={() => goToPage(Math.max(1, currentPage - 1))}
             disabled={currentPage === 1}
           >
             Prev
@@ -209,7 +214,7 @@ export default function RecipeGrid({ activeCategory, onCategorySelect }) {
             return (
               <button
                 key={page}
-                onClick={() => setCurrentPage(page)}
+                onClick={() => goToPage(page)}
                 aria-current={page === currentPage ? "page" : undefined}
                 className="px-4 py-2 text-base rounded border transition-colors duration-200"
                 style={
@@ -225,7 +230,7 @@ export default function RecipeGrid({ activeCategory, onCategorySelect }) {
           <button
             className="rounded px-4 py-2 text-base border border-gray-200 disabled:opacity-40 transition-colors duration-200 hover:bg-gray-50"
             style={{ color: "#555" }}
-            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+            onClick={() => goToPage(Math.min(totalPages, currentPage + 1))}
             disabled={currentPage === totalPages}
           >
             Next
