@@ -120,7 +120,7 @@ export default function Hero() {
 
         <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-gray-100">
           <img
-            src="https://res.cloudinary.com/dnkfg07ov/image/upload/v1780102250/Chicken_Fajita_Bowls_-_Prepper_Protein_fogyip.jpg"
+            src="https://res.cloudinary.com/dnkfg07ov/image/upload/v1780102250/Street_Corn_Chicken_Rice_Bowl_Recipe_ras4md.jpg"
             alt="Today's pick."
             className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
           />
