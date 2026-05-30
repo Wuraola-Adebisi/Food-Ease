@@ -7,6 +7,7 @@ import RecipeList from "./RecipeList";
 import RecipeLoadingGrid from "./RecipeLoadingGrid";
 import RecipeSearch from "./RecipeSearch";
 import RecipeSectionHeader from "./RecipeSectionHeader";
+import CategoryFilter from "./CategoryFilter";
 
 export default function RecipeGrid({ activeCategory, onCategorySelect }) {
   const {
@@ -46,6 +47,10 @@ export default function RecipeGrid({ activeCategory, onCategorySelect }) {
 
   return (
     <div id="recipes" className="mx-auto max-w-6xl px-6 pt-4 pb-12 mt-12">
+      <CategoryFilter
+  activeCategory={activeCategory}
+  onCategorySelect={onCategorySelect}
+/>
       <RecipeSearch query={query} onQueryChange={handleQueryChange} />
 
       <RecipeSectionHeader
