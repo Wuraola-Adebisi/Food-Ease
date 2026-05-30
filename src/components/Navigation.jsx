@@ -6,6 +6,8 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
   const [opacity, setOpacity] = useState(0);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [subscribeOpen, setSubscribeOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileCatsOpen, setMobileCatsOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const dropdownRef = useRef(null);
@@ -33,11 +35,20 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
 
   useEffect(() => {
     const handleKey = (e) => {
-      if (e.key === "Escape") setSubscribeOpen(false);
+      if (e.key === "Escape") {
+        setSubscribeOpen(false);
+        setMenuOpen(false);
+      }
     };
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
   }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
 
   const handleMouseEnter = () => {
     clearTimeout(hoverTimeout.current);
@@ -51,6 +62,11 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
   const handleSubscribeSubmit = (e) => {
     e.preventDefault();
     if (email) setSubmitted(true);
+  };
+
+  const handleMobileCategorySelect = (cat) => {
+    onCategorySelect(cat);
+    setMenuOpen(false);
   };
 
   return (
@@ -191,7 +207,10 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
             >
               Subscribe
             </button>
+
+            {/* Hamburger — wired to menuOpen */}
             <button
+              onClick={() => setMenuOpen((v) => !v)}
               className="md:hidden flex flex-col justify-center items-end gap-1.5 h-9 w-9 rounded-xl border p-2 active:scale-95 transition-all"
               style={{
                 borderColor: scrolled ? "#e5e7eb" : "rgba(255,255,255,0.4)",
@@ -199,15 +218,174 @@ export default function Navigation({ activeCategory, onCategorySelect }) {
                 transition: "border-color 0.3s ease, background-color 0.3s ease",
               }}
               aria-label="Toggle Menu"
+              aria-expanded={menuOpen}
             >
-              <span className="w-5 h-0.5 rounded" style={{ backgroundColor: scrolled ? "var(--color-forest)" : "#fff", transition: "background-color 0.3s ease" }} />
-              <span className="w-3.5 h-0.5 rounded" style={{ backgroundColor: scrolled ? "var(--color-forest)" : "#fff", transition: "background-color 0.3s ease" }} />
+              {/* Animate bars into X when open */}
+              <span
+                className="w-5 h-0.5 rounded block transition-all duration-300 origin-center"
+                style={{
+                  backgroundColor: scrolled ? "var(--color-forest)" : "#fff",
+                  transform: menuOpen ? "translateY(4px) rotate(45deg)" : "none",
+                }}
+              />
+              <span
+                className="w-3.5 h-0.5 rounded block transition-all duration-300"
+                style={{
+                  backgroundColor: scrolled ? "var(--color-forest)" : "#fff",
+                  opacity: menuOpen ? 0 : 1,
+                  transform: menuOpen ? "scaleX(0)" : "none",
+                }}
+              />
+              <span
+                className="w-5 h-0.5 rounded block transition-all duration-300 origin-center"
+                style={{
+                  backgroundColor: scrolled ? "var(--color-forest)" : "#fff",
+                  transform: menuOpen ? "translateY(-4px) rotate(-45deg)" : "none",
+                  // Third bar appears when menu is open to form X
+                  opacity: menuOpen ? 1 : 0,
+                  marginTop: menuOpen ? 0 : "-6px",
+                  position: menuOpen ? "relative" : "absolute",
+                }}
+              />
             </button>
           </div>
         </div>
       </nav>
 
-  
+      {/* ── Mobile slide-in drawer ── */}
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 z-40 md:hidden"
+        style={{
+          backgroundColor: "rgba(0,0,0,0.4)",
+          backdropFilter: "blur(2px)",
+          opacity: menuOpen ? 1 : 0,
+          pointerEvents: menuOpen ? "auto" : "none",
+          transition: "opacity 0.3s ease",
+        }}
+        onClick={() => setMenuOpen(false)}
+        aria-hidden="true"
+      />
+
+      {/* Drawer panel */}
+      <div
+        className="fixed top-0 right-0 h-full z-50 md:hidden flex flex-col"
+        style={{
+          width: "min(320px, 85vw)",
+          backgroundColor: "#fff",
+          boxShadow: "-8px 0 32px rgba(0,0,0,0.12)",
+          transform: menuOpen ? "translateX(0)" : "translateX(100%)",
+          transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+          overflowY: "auto",
+        }}
+      >
+        {/* Drawer header */}
+        <div
+          className="flex items-center justify-between px-6 py-5 border-b"
+          style={{ borderColor: "#f0f0ee" }}
+        >
+          <span
+            className="text-xl font-bold tracking-tight"
+            style={{ fontFamily: "var(--font-serif)", color: "#111" }}
+          >
+            Food<span style={{ color: "var(--color-forest)" }}>Ease</span>
+          </span>
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="h-8 w-8 rounded-full flex items-center justify-center transition-colors"
+            style={{ color: "#999" }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#f5f5f3"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; }}
+            aria-label="Close menu"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Nav links */}
+        <div className="flex flex-col px-4 pt-4 gap-1" style={{ fontFamily: "var(--font-sans)" }}>
+          {["Home", "About Us", "Contact"].map((label) => (
+            <a
+              key={label}
+              href="#"
+              onClick={() => setMenuOpen(false)}
+              className="px-4 py-3 rounded-xl text-base font-medium transition-colors"
+              style={{ color: "#111" }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#f5f5f3"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; }}
+            >
+              {label}
+            </a>
+          ))}
+
+          {/* Recipes accordion */}
+          <button
+            onClick={() => setMobileCatsOpen((v) => !v)}
+            className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-colors text-left border-none cursor-pointer"
+            style={{ color: "#111", backgroundColor: "transparent", fontFamily: "var(--font-sans)" }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#f5f5f3"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; }}
+          >
+            Recipes
+            <svg
+              width="16" height="16" viewBox="0 0 16 16" fill="none"
+              style={{
+                transition: "transform 0.2s ease",
+                transform: mobileCatsOpen ? "rotate(180deg)" : "rotate(0deg)",
+                color: "#999",
+              }}
+            >
+              <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+
+          {/* Category list */}
+          <div
+            style={{
+              maxHeight: mobileCatsOpen ? "500px" : "0px",
+              overflow: "hidden",
+              transition: "max-height 0.3s ease",
+            }}
+          >
+            <div className="flex flex-col gap-0.5 pl-4 pb-2">
+              {CATEGORIES.map((cat) => {
+                const isActive = activeCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => handleMobileCategorySelect(cat)}
+                    className="w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium transition-colors border-none cursor-pointer"
+                    style={{
+                      backgroundColor: isActive ? "var(--color-forest)" : "transparent",
+                      color: isActive ? "#fff" : "#555",
+                      fontFamily: "var(--font-sans)",
+                    }}
+                    onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.backgroundColor = "#f5f5f3"; e.currentTarget.style.color = "var(--color-forest)"; } }}
+                    onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#555"; } }}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Subscribe button at bottom of drawer */}
+        <div className="mt-auto px-6 pb-8 pt-4 border-t" style={{ borderColor: "#f0f0ee" }}>
+          <button
+            onClick={() => { setMenuOpen(false); setSubscribeOpen(true); setSubmitted(false); setEmail(""); }}
+            className="w-full rounded-xl py-3 text-sm font-semibold text-white transition-all duration-200 active:scale-[0.98] hover:opacity-90"
+            style={{ backgroundColor: "var(--color-forest)", fontFamily: "var(--font-sans)" }}
+          >
+            Subscribe to FoodEase
+          </button>
+        </div>
+      </div>
+
+      {/* Subscribe modal */}
       {subscribeOpen && (
         <div
           className="fixed inset-0 z-[200] flex items-center justify-center px-4"
