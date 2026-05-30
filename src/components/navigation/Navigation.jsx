@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useBodyScrollLock } from "../../hooks/useBodyScrollLock";
 import { useScrollHeader } from "../../hooks/useScrollHeader";
 import BrandLogo from "../shared/BrandLogo";
@@ -7,7 +7,7 @@ import MenuButton from "./MenuButton";
 import MobileMenu from "./MobileMenu";
 import SubscribeModal from "./SubscribeModal";
 
-export default function Navigation({ activeCategory, onCategorySelect }) {
+export default function Navigation() { activeCategory, onCategorySelect }) {
   const { scrolled, opacity } = useScrollHeader();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [subscribeOpen, setSubscribeOpen] = useState(false);
