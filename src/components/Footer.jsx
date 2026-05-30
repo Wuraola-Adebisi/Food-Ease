@@ -8,7 +8,7 @@ export default function Footer({ onCategorySelect }) {
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
 
-          {/* Brand Info */}
+      
           <div className="space-y-4">
             <a href="#" className="flex items-center gap-2 group w-fit">
               <span
@@ -44,7 +44,7 @@ export default function Footer({ onCategorySelect }) {
             </div>
           </div>
 
-          {/* Quick Links */}
+         
           <div className="space-y-4 text-left">
             <h3 className="text-base font-semibold tracking-wider uppercase" style={{ fontFamily: "var(--font-sans)", color: "#111" }}>
               Explore
@@ -66,7 +66,7 @@ export default function Footer({ onCategorySelect }) {
             </ul>
           </div>
 
-          {/* Categories — wired up */}
+      
           <div className="space-y-4 text-left">
             <h3 className="text-base font-semibold tracking-wider uppercase" style={{ fontFamily: "var(--font-sans)", color: "#111" }}>
               Categories
@@ -88,7 +88,7 @@ export default function Footer({ onCategorySelect }) {
             </ul>
           </div>
 
-          {/* Newsletter */}
+    
           <div className="space-y-4 text-left">
             <h3 className="text-base font-semibold tracking-wider uppercase" style={{ fontFamily: "var(--font-sans)", color: "#111" }}>
               Stay Inspired
@@ -119,7 +119,7 @@ export default function Footer({ onCategorySelect }) {
 
         </div>
 
-        {/* Bottom Bar */}
+  
         <div className="mt-16 border-t border-gray-200/60 pt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between text-sm" style={{ color: "#999", fontFamily: "var(--font-sans)" }}>
           <p>© {new Date().getFullYear()} FoodEase Inc. All rights reserved.</p>
           <div className="flex gap-6">
