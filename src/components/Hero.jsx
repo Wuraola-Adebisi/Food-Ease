@@ -39,7 +39,7 @@ export default function Hero() {
                 .getElementById("recipes")
                 .scrollIntoView({ behavior: "smooth" })
             }
-            className="mt-2 inline-flex items-center gap-2 rounded-full border border-white px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-all duration-200 active:scale-95"
+            className="mt-2 inline-flex items-center gap-2 rounded-lg border border-white px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-all duration-200 active:scale-95"
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.15)";
             }}
@@ -99,7 +99,7 @@ export default function Hero() {
           </div>
           <div>
             <button
-              className="inline-flex items-center gap-2 rounded-full border px-6 py-3 text-xs font-bold uppercase tracking-widest transition-all duration-200 active:scale-95"
+              className="inline-flex items-center gap-2 rounded-lg border px-6 py-3 text-xs font-bold uppercase tracking-widest transition-all duration-200 active:scale-95"
               style={{
                 borderColor: "var(--color-forest)",
                 color: "var(--color-forest)",
@@ -120,8 +120,8 @@ export default function Hero() {
 
         <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-gray-100">
           <img
-            src="https://res.cloudinary.com/dnkfg07ov/image/upload/v1780026445/download_12_yrt9aj.jpg"
-            alt="Today's pick"
+            src="https://res.cloudinary.com/dnkfg07ov/image/upload/v1780102250/Chicken_Fajita_Bowls_-_Prepper_Protein_fogyip.jpg"
+            alt="Today's pick."
             className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
           />
         </div>
