@@ -118,7 +118,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-gray-100">
+        <div className="rounded-2xl overflow-hidden aspect-[3/3] bg-gray-100">
           <img
             src="https://res.cloudinary.com/dnkfg07ov/image/upload/v1780102250/Street_Corn_Chicken_Rice_Bowl_Recipe_ras4md.jpg"
             alt="Today's pick."
