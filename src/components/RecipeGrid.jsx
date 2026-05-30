@@ -69,7 +69,6 @@ export default function RecipeGrid({ activeCategory, onCategorySelect }) {
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Fetch all recipes once
   useEffect(() => {
     fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=")
       .then((res) => {
@@ -87,7 +86,7 @@ export default function RecipeGrid({ activeCategory, onCategorySelect }) {
       });
   }, []);
 
-  // Debounce: update debouncedQuery 400ms after user stops typing
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedQuery(query);
@@ -95,7 +94,7 @@ export default function RecipeGrid({ activeCategory, onCategorySelect }) {
     return () => clearTimeout(timer);
   }, [query]);
 
-  // Reset to page 1 when filter or debounced search changes
+
   useEffect(() => {
     setCurrentPage(1);
   }, [activeCategory, debouncedQuery]);
