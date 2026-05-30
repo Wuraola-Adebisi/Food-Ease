@@ -26,12 +26,18 @@ export default function RecipeGrid({ activeCategory, onCategorySelect }) {
     setCurrentPage(page);
     scrollToRecipes();
   };
-
-  const handleClearAll = () => {
-    setQuery("");
-    setDebouncedQuery("");
-    if (activeCategory) onCategorySelect(activeCategory);
-  };
+  
+const handleQueryChange = (nextQuery) => {
+  setQuery(nextQuery);
+  setCurrentPage(1);
+};
+  
+ const handleClearAll = () => {
+  setQuery("");
+  setDebouncedQuery("");
+  setCurrentPage(1);
+  if (activeCategory) onCategorySelect(activeCategory);
+};
 
   if (error) {
     return <RecipeError message={error} />;
@@ -39,7 +45,7 @@ export default function RecipeGrid({ activeCategory, onCategorySelect }) {
 
   return (
     <div id="recipes" className="mx-auto max-w-6xl px-6 pt-4 pb-12 mt-12">
-      <RecipeSearch query={query} onQueryChange={setQuery} />
+     <RecipeSearch query={query} onQueryChange={handleQueryChange} />
 
       <RecipeSectionHeader
         activeCategory={activeCategory}
