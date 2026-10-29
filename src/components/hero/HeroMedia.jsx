@@ -5,7 +5,7 @@ export default function HeroMedia() {
   return (
     <div
       className="relative w-full overflow-hidden bg-gray-900"
-      style={{ height: "100vh" }}
+      style={{ height: "min(100svh, 900px)", minHeight: "560px" }}
     >
       <video
         autoPlay
@@ -19,31 +19,32 @@ export default function HeroMedia() {
       </video>
       <div
         className="absolute inset-0"
-        style={{ backgroundColor: "rgba(0, 0, 0, 0.45)" }}
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.56) 100%)",
+        }}
       />
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-8 gap-4">
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 px-6 text-center">
         <p
-          className="text-xs font-bold tracking-[0.25em] uppercase"
-          style={{ color: "rgba(255,255,255,0.7)" }}
+          className="text-xs font-bold uppercase tracking-[0.25em] sm:text-sm"
+          style={{ color: "rgba(255,255,255,0.78)" }}
         >
           Thousands of recipes, one place
         </p>
-        <h1 className="text-center font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.15] max-w-2xl">
+        <h1 className="max-w-3xl text-center font-serif text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
           Real food, made for real kitchens.
         </h1>
+        <p className="max-w-lg text-sm leading-relaxed text-white/80 sm:text-base">
+          Find something worth making, from quick weeknight meals to a new
+          favourite.
+        </p>
         <button
           type="button"
           onClick={scrollToRecipes}
-          className="mt-2 inline-flex items-center gap-2 rounded-lg border border-white px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-all duration-200 active:scale-95"
-          onMouseEnter={(event) => {
-            event.currentTarget.style.backgroundColor = "rgba(255,255,255,0.15)";
-          }}
-          onMouseLeave={(event) => {
-            event.currentTarget.style.backgroundColor = "transparent";
-          }}
+          className="mt-2 inline-flex items-center justify-center rounded-full border border-white/80 px-7 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white transition-colors duration-200 hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white active:scale-[0.98]"
         >
-          Browse Recipes -&gt;
+          Browse recipes
         </button>
       </div>
     </div>
