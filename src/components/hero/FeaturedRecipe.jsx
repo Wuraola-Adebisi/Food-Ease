@@ -1,4 +1,5 @@
 import { FEATURED_RECIPE } from "../../constants";
+import { scrollToRecipes } from "../../utils/scroll";
 
 export default function FeaturedRecipe() {
   return (
@@ -32,21 +33,14 @@ export default function FeaturedRecipe() {
         </div>
         <button
           type="button"
-          className="mt-2 inline-flex items-center justify-center rounded-full border px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-200 hover:bg-[var(--color-forest)] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-forest)] active:scale-[0.98]"
+          onClick={scrollToRecipes}
+          className="mt-2 inline-flex min-h-11 items-center justify-center rounded-full border px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-200 hover:bg-[var(--color-forest)] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-forest)] active:scale-[0.98]"
           style={{
             borderColor: "var(--color-forest)",
             color: "var(--color-forest)",
           }}
-          onMouseEnter={(event) => {
-            event.currentTarget.style.backgroundColor = "var(--color-forest)";
-            event.currentTarget.style.color = "#fff";
-          }}
-          onMouseLeave={(event) => {
-            event.currentTarget.style.backgroundColor = "transparent";
-            event.currentTarget.style.color = "var(--color-forest)";
-          }}
         >
-          Get the recipe
+          Browse recipes
         </button>
       </div>
 
@@ -54,6 +48,11 @@ export default function FeaturedRecipe() {
         <img
           src={FEATURED_RECIPE.imageUrl}
           alt={FEATURED_RECIPE.imageAlt}
+          loading="lazy"
+          decoding="async"
+          onError={(event) => {
+            event.currentTarget.style.display = "none";
+          }}
           className="h-auto max-h-[520px] w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
         />
       </div>
