@@ -1,34 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="96" fill="#4A6741"/>
-
-  <path
-    fill="#ffffff"
-    d="
-      M155 95
-      C155 72 172 56 196 56
-      H360
-      C385 56 400 70 400 93
-      C400 151 375 198 325 208
-      H258
-      V264
-      H314
-      C347 264 368 281 368 312
-      C368 353 336 382 292 382
-      H258
-      V390
-      C258 437 229 472 183 480
-
-      L194 279
-
-      C195 257 188 241 172 224
-      C161 213 155 198 155 180
-
-      Z
-    "
-  />
-
-  <!-- Fork cutouts -->
-  <rect x="182" y="94" width="10" height="84" rx="5" fill="#4A6741"/>
-  <rect x="203" y="94" width="10" height="84" rx="5" fill="#4A6741"/>
-  <rect x="224" y="94" width="10" height="84" rx="5" fill="#4A6741"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="18" fill="#4A6741"/>
+  <circle cx="32" cy="32" r="22" fill="none" stroke="#F7F5EF" stroke-width="2.5"/>
+  <path d="M23 15v13M28 15v13M33 15v13M23 28h10v5c0 4-2 6-5 7v9" fill="none" stroke="#F7F5EF" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M41 15c-5 4-7 10-7 17v15M41 15v17" fill="none" stroke="#F7F5EF" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M39 12c5 0 9 3 10 8-5 0-9-3-10-8Z" fill="#C9D8B8"/>
 </svg>
