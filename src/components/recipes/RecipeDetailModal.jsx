@@ -62,8 +62,6 @@ export default function RecipeDetailModal({
     previousFocusRef.current = document.activeElement;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    setCheckedIngredients([]);
-
     const closeOnEscape = (event) => {
       if (event.key === "Escape") onClose();
       if (event.key !== "Tab") return;
