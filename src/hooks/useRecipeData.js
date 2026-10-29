@@ -20,14 +20,16 @@ function recipeDataReducer(state, action) {
   }
 }
 
-async function loadRecipes(dispatch) {
+async function loadRecipes(dispatch, signal) {
   dispatch({ type: "loading" });
 
   try {
-    const meals = await fetchRecipes();
-    dispatch({ type: "success", payload: meals });
+    const meals = await fetchRecipes({ signal });
+    if (!signal?.aborted) dispatch({ type: "success", payload: meals });
   } catch (fetchError) {
-    dispatch({ type: "error", payload: fetchError.message });
+    if (fetchError.name !== "AbortError" && !signal?.aborted) {
+      dispatch({ type: "error", payload: fetchError.message });
+    }
   }
 }
 
@@ -39,8 +41,11 @@ export function useRecipeData() {
   }, []);
 
   useEffect(() => {
-    refetchRecipes();
-  }, [refetchRecipes]);
+    const controller = new AbortController();
+    loadRecipes(dispatch, controller.signal);
+
+    return () => controller.abort();
+  }, []);
 
   return {
     error: state.error,

@@ -2,43 +2,33 @@ export default function RecipeSectionHeader({
   activeCategory,
   debouncedQuery,
   onClear,
+  resultCount,
+  showSaved = false,
 }) {
-  const title = activeCategory || debouncedQuery
-    ? activeCategory || `Results for "${debouncedQuery}"`
-    : "All Recipes";
+  const title = showSaved
+    ? "Saved Recipes"
+    : activeCategory || (debouncedQuery ? `Results for “${debouncedQuery}”` : "All Recipes");
 
   return (
-    <div className="flex items-center justify-between mb-4 pl-[10px]">
-      <h2
-        className="font-bold text-3xl"
-        style={{
-          fontFamily: "var(--font-serif)",
-          color: "#111",
-          lineHeight: "1.15",
-        }}
-      >
-        {title}
-      </h2>
-      {(activeCategory || debouncedQuery) && (
+    <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <h2
+          className="font-serif text-2xl font-bold leading-tight text-stone-950 sm:text-3xl"
+        >
+          {title}
+        </h2>
+        <p className="mt-1 text-sm text-stone-500" aria-live="polite">
+          {resultCount} {resultCount === 1 ? "recipe" : "recipes"}
+          {debouncedQuery && !showSaved ? " found" : " to explore"}
+        </p>
+      </div>
+      {(activeCategory || debouncedQuery || showSaved) && (
         <button
           type="button"
           onClick={onClear}
-          className="text-sm font-medium rounded-full px-4 py-1.5 border transition-colors"
-          style={{
-            borderColor: "var(--color-forest)",
-            color: "var(--color-forest)",
-            fontFamily: "var(--font-sans)",
-          }}
-          onMouseEnter={(event) => {
-            event.currentTarget.style.backgroundColor = "var(--color-forest)";
-            event.currentTarget.style.color = "#fff";
-          }}
-          onMouseLeave={(event) => {
-            event.currentTarget.style.backgroundColor = "transparent";
-            event.currentTarget.style.color = "var(--color-forest)";
-          }}
+          className="rounded-full border border-[var(--color-forest)] px-4 py-2 text-sm font-semibold text-[var(--color-forest)] transition-colors hover:bg-[var(--color-forest)] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-forest)]"
         >
-          Clear x
+          Clear filters
         </button>
       )}
     </div>

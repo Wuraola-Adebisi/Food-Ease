@@ -3,10 +3,10 @@ import { usePagination } from "./usePagination";
 import { useRecipeData } from "./useRecipeData";
 import { useRecipeSearch } from "./useRecipeSearch";
 
-export function useRecipes(activeCategory) {
+export function useRecipes(activeCategory, savedIds = [], showSaved = false) {
   const { error, loading, recipes, refetchRecipes } = useRecipeData();
   const { clearQuery, debouncedQuery, filteredRecipes, query, setQuery } =
-    useRecipeSearch(recipes, activeCategory);
+    useRecipeSearch(recipes, activeCategory, savedIds, showSaved);
 
   const {
     currentPage,
@@ -29,5 +29,6 @@ export function useRecipes(activeCategory) {
     setCurrentPage,
     setQuery,
     totalPages,
+    totalResults: filteredRecipes.length,
   };
 }

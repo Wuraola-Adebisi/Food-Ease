@@ -2,7 +2,13 @@ import { RECIPE_DESCRIPTION_LIMIT } from "../../constants";
 import RecipeCard from "./RecipeCard";
 
 function getRecipeExcerpt(instructions = "") {
-  const cleaned = instructions.replace(/\s+/g, " ").trim();
+  const cleaned = String(instructions || "")
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/\s+/g, " ")
+    .trim();
 
   if (cleaned.length <= RECIPE_DESCRIPTION_LIMIT) return cleaned;
 
@@ -15,31 +21,45 @@ function getRecipeExcerpt(instructions = "") {
 
   return sentenceEnd > 45
     ? excerpt.slice(0, sentenceEnd + 1)
-    : `${excerpt.slice(0, excerpt.lastIndexOf(" "))}…`;
+    : `${excerpt.slice(0, Math.max(1, excerpt.lastIndexOf(" ")))}…`;
 }
 
 function getRecipeTags(tags = "") {
-  return tags
+  return String(tags || "")
     .split(",")
     .map((tag) => tag.trim())
     .filter(Boolean)
     .slice(0, 3);
 }
 
-export default function RecipeList({ recipes }) {
+export default function RecipeList({
+  onOpenRecipe,
+  onToggleSaved,
+  recipes,
+  savedIds = [],
+}) {
   return (
-    <section className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      {recipes.map((meal) => (
-        <RecipeCard
-          key={meal.idMeal}
-          area={meal.strArea}
-          category={meal.strCategory}
-          description={getRecipeExcerpt(meal.strInstructions)}
-          image={meal.strMealThumb}
-          tags={getRecipeTags(meal.strTags || "")}
-          title={meal.strMeal}
-        />
-      ))}
+    <section
+      aria-label="Recipes"
+      className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+    >
+      {recipes.map((meal) => {
+        const id = String(meal.idMeal);
+        return (
+          <RecipeCard
+            key={id}
+            area={meal.strArea}
+            category={meal.strCategory}
+            description={getRecipeExcerpt(meal.strInstructions)}
+            image={meal.strMealThumb}
+            isSaved={savedIds.includes(id)}
+            onOpen={() => onOpenRecipe(meal)}
+            onToggleSaved={() => onToggleSaved(id)}
+            tags={getRecipeTags(meal.strTags)}
+            title={meal.strMeal || "Untitled recipe"}
+          />
+        );
+      })}
     </section>
   );
 }
