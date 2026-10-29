@@ -6,14 +6,11 @@
 
 :root {
   color-scheme: light;
-
   --color-forest: #4A6741;
   --color-forest-light: #6A8F5F;
   --color-forest-wash: #eef3eb;
-
   --font-serif: 'Libre Baskerville', Georgia, serif;
   --font-sans: 'Source Sans 3', system-ui, sans-serif;
-
   font-family: var(--font-sans);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -45,6 +42,32 @@ select {
 
 button {
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Explicit states prevent global button rules from hiding the hero CTA label. */
+.hero-browse-button,
+.hero-browse-button:link,
+.hero-browse-button:visited {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+  color: #17351f !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.hero-browse-button:hover,
+.hero-browse-button:focus-visible {
+  background-color: #17351f !important;
+  border-color: #17351f !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.hero-browse-button:active {
+  background-color: #102617 !important;
+  border-color: #102617 !important;
+  color: #ffffff !important;
 }
 
 ::selection {
