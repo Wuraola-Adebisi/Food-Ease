@@ -47,6 +47,30 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Keep the hero CTA readable even if other button hover rules are added. */
+.hero-browse-button,
+.hero-browse-button:link,
+.hero-browse-button:visited {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+  color: #17351f !important;
+  opacity: 1 !important;
+}
+
+.hero-browse-button:hover,
+.hero-browse-button:focus-visible {
+  background-color: #17351f !important;
+  border-color: #17351f !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.hero-browse-button:active {
+  background-color: #102617 !important;
+  border-color: #102617 !important;
+  color: #ffffff !important;
+}
+
 ::selection {
   background: #dce8d5;
   color: #1d2c19;
