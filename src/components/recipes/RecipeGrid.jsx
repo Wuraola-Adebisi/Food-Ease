@@ -124,6 +124,7 @@ export default function RecipeGrid({ activeCategory, onCategorySelect }) {
       </div>
 
       <RecipeDetailModal
+        key={selectedRecipe?.idMeal || "recipe-detail-closed"}
         recipe={selectedRecipe}
         isSaved={selectedRecipe ? savedIds.includes(String(selectedRecipe.idMeal)) : false}
         onClose={closeRecipe}
