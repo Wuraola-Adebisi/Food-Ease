@@ -42,7 +42,7 @@ export default function HeroMedia() {
         <button
           type="button"
           onClick={scrollToRecipes}
-          className="mt-2 inline-flex items-center justify-center rounded-full border border-white bg-white px-7 py-3 text-xs font-bold uppercase tracking-[0.16em] text-emerald-950 transition-colors duration-200 hover:border-emerald-950 hover:bg-emerald-950 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white active:scale-[0.98]"
+          className="hero-browse-button mt-2 inline-flex items-center justify-center rounded-full border px-7 py-3 text-xs font-bold uppercase tracking-[0.16em] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white active:scale-[0.98]"
         >
           Browse recipes
         </button>
