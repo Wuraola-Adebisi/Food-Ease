@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,18 +9,56 @@
 
   --color-forest: #4A6741;
   --color-forest-light: #6A8F5F;
+  --color-forest-wash: #eef3eb;
 
   --font-serif: 'Libre Baskerville', Georgia, serif;
   --font-sans: 'Source Sans 3', system-ui, sans-serif;
+
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
   background-color: #ffffff;
-  color: #111111;
+  color: #171914;
   font-family: var(--font-sans);
   font-weight: 400;
   line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: #dce8d5;
+  color: #1d2c19;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
